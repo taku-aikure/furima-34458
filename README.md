@@ -1,4 +1,4 @@
-# DB　設計
+# DB 設計
 
 ## Users table
 
@@ -7,9 +7,9 @@
 | nickname           | string   | null: false   |
 | email              | string   | unique: true, null: false ｜
 | encrypted_password | string   | null: false   |
-| family_name        | string   | null: false   |
+| first_name        | string   | null: false   |
 | last_name          | string   | null: false   |
-| family_name_kana   | string   | null: false   |
+| first_name_kana   | string   | null: false   |
 | last_name_kana     | string   | null: false   |
 | birthday           | date     | null: false   |
 
@@ -21,7 +21,7 @@
 
 | Column           |Type           |Options              |
 | ---------------- | ------------- | ------------------- |
-| name     　　   　| string        | null: false         |
+| name             | string        | null: false         |
 | description      | text          | null: false         |
 | category_id      | integer       | null: false         |
 | status_id        | integer       | null: false         |
