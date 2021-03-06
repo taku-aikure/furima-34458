@@ -12,12 +12,17 @@ class Item < ApplicationRecord
   belongs_to :days
 
   with_options presence: true do
-    validates :name, :description, :image, :price
+    validates :name, :description, :image
   end
 
-  validates :category_id, numericality: { other_than: 1 }
-  validates :status_id, numericality: { other_than: 1 }
-  validates :cost_id, numericality: { other_than: 1 }
-  validates :area_id, numericality: { other_than: 1 }
-  validates :days_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :cost_id
+    validates :area_id
+    validates :days_id
+  end
+
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to:  10000000},
+  format: {with: /\A[0-9]+\z/}
 end
