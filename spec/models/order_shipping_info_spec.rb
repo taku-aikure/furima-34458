@@ -59,6 +59,18 @@ RSpec.describe OrderShippingInfo, type: :model do
         expect(@order_shipping_info.errors.full_messages).to include("Token can't be blank")
       end
 
+      it 'user_idが空では購入できない' do
+        @order_shipping_info.user_id = ''
+        @order_shipping_info.valid?
+        expect(@order_shipping_info.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では購入できない' do
+        @order_shipping_info.item_id = ''
+        @order_shipping_info.valid?
+        expect(@order_shipping_info.errors.full_messages).to include("Item can't be blank")
+      end
+
       it 'postal_codeは半角ハイフンを含む正しい形式でないと保存できない' do
         @order_shipping_info.postal_code = '1234567'
         @order_shipping_info.valid?

@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :item_param, only: [:index, :create]
+  before_action :move_to_root, only: [:index, :create]
 
   def index
     @order_shipping_info = OrderShippingInfo.new
       if current_user.id == @item.user_id or @item.order.presence
         redirect_to root_path
       end
-    
   end
 
   def create
@@ -41,5 +41,10 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def move_to_root
+    if current_user.id == @item.user_id or @item.order.presence
+      redirect_to root_path
+    end
+  end
 
 end
