@@ -70,6 +70,12 @@ RSpec.describe OrderShippingInfo, type: :model do
         @order_shipping_info.valid?
         expect(@order_shipping_info.errors.full_messages).to include("Phone num is invalid")
       end
+
+      it 'phone_numは英数字混合では保存できないこと' do
+        @order_shipping_info.phone_num = 'abc12345678'
+        @order_shipping_info.valid?
+        expect(@order_shipping_info.errors.full_messages).to include("Phone num is invalid")
+      end
     end
 
   end
